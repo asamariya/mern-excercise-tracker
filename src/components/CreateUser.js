@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CreateUser = () => {
   const [username, setUsername] = useState('');
@@ -12,10 +13,13 @@ const CreateUser = () => {
       username
     };
     console.log(newUser);
+    axios
+      .post('http://localhost:5000/users/add', newUser)
+      .then(res => console.log(res.data));
     setUsername('');
   };
   return (
-    <div>
+    <div className="container">
       <h3>Create New User</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
